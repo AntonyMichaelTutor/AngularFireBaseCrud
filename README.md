@@ -1,11 +1,11 @@
 # AngularFireBaseCrud
 
 #Required Things
-npm install
-npm install firebase@4.6.1 
-npm install angularfire2@5.0.0-rc.3 --save 
-npm install ngx-toastr --save 
-npm install rxjs-compat@6.0.0-tactical-rc.1
+<Br>npm install
+<Br>npm install firebase@4.6.1 
+<Br>npm install angularfire2@5.0.0-rc.3 --save 
+<Br>npm install ngx-toastr --save 
+<Br>npm install rxjs-compat@6.0.0-tactical-rc.1
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
