@@ -4,6 +4,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <h6 class="text-center">Employee Register</h6><br/>
+<div *ngIf="show">
 <table class="table table-sm table-hover">
   <tr *ngFor="let employee of employeeList">
       <td>{{employee.name}}</td>
@@ -18,3 +19,21 @@
       </td>
   </tr>
 </table>
+</div>
+<input type="text" (keyup) ="onSearch($event)">
+<div *ngIf="searchShow">
+  <table class="table table-sm table-hover">
+    <tr *ngFor="let employee of employeeList">
+        <td *ngIf="employee.name===searchKey">{{employee.name}}</td>
+        <td *ngIf="employee.name==searchKey">{{employee.position}}</td>
+        <td>
+          <a class="btn" (click)="onEdit(employee)">
+            <i class="fa fa-pencil-square-o"></i>
+          </a>
+          <a class="btn" (click)="onDelete(employee.$key)">
+            <i class="fa fa-trash-o"></i>
+          </a>
+        </td>
+    </tr>
+  </table>
+</div>

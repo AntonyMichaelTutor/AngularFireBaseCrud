@@ -10,7 +10,12 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class EmployeeListComponent implements OnInit {
   employeeList: Employee[];
-  constructor(private employeeService: EmployeeService, private tostr: ToastrService) { }
+  searchKey="";
+  searchShow:boolean;
+  show = true;
+  constructor(private employeeService: EmployeeService, private tostr: ToastrService) {
+    this.searchShow = false;
+   }
 
   ngOnInit() {
     var x = this.employeeService.getData();
@@ -33,6 +38,22 @@ export class EmployeeListComponent implements OnInit {
       this.employeeService.deleteEmployee(key);
       this.tostr.warning("Deleted Successfully", "Employee register");
     }
+  }
+
+  onSearch($event){
+    this.searchShow = true;
+    this.show = false;
+    this.searchKey = (<HTMLInputElement>event.target).value;
+    var x = this.employeeService.getData();
+    x.snapshotChanges().subscribe(item => {
+      this.employeeList = [];
+      item.forEach(element => {
+        var y = element.payload.toJSON();
+        y["$key"] = element.key;
+        this.employeeList.push(y as Employee);
+      });
+    });
+    
   }
 
 }
