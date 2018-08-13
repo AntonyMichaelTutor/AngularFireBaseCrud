@@ -12,6 +12,8 @@ export class EmployeeListComponent implements OnInit {
   employeeList: Employee[];
   searchKey="";
   searchShow:boolean;
+  myModalShow = false;
+  employeeName:string;
   show = true;
   constructor(private employeeService: EmployeeService, private tostr: ToastrService) {
     this.searchShow = false;
@@ -39,7 +41,17 @@ export class EmployeeListComponent implements OnInit {
       this.tostr.warning("Deleted Successfully", "Employee register");
     }
   }
-
+  onClose(){
+    this.myModalShow = false;
+  }
+  showPopup(emp: Employee){
+    console.log("popup");
+    this.myModalShow = true;
+    console.log(this.myModalShow);
+    this.employeeService.selectedEmployee = Object.assign({}, emp);
+    this.employeeName = this.employeeService.selectedEmployee.name;
+    console.log(this.employeeService.selectedEmployee.name);
+  }
   onSearch($event){
     this.searchShow = true;
     this.show = false;
