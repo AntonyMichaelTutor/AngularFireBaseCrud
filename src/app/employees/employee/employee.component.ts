@@ -18,13 +18,19 @@ export class EmployeeComponent implements OnInit {
   }
 
   onSubmit(employeeForm: NgForm) {
-    if (employeeForm.value.$key == null)
+    if (employeeForm.value.$key == null){
       this.employeeService.insertEmployee(employeeForm.value);
-    else
+      this.resetForm(employeeForm);
+      this.tostr.success('Employee created Succcessfully', 'Employee Register');
+    }
+    else{
       this.employeeService.updateEmployee(employeeForm.value);
-    this.resetForm(employeeForm);
-    this.tostr.success('Submitted Succcessfully', 'Employee Register');
-  }
+      this.resetForm(employeeForm);
+      this.tostr.success('Employee updated Succcessfully', 'Employee Register');
+
+    }
+  }   
+    
 
   resetForm(employeeForm?: NgForm) {
     if (employeeForm != null)
